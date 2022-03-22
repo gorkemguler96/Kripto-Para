@@ -1,12 +1,35 @@
-import React from 'react';
-import {Button} from "antd";
-import { Input, Space } from 'antd';
+import React, { useState } from 'react';
+import {Button, Card} from "antd";
+import { Input, Modal } from 'antd';
 import headerCss from '../style/Header.css'
+import {useSelector} from "react-redux";
+import {FundOutlined} from "@ant-design/icons";
 
 function Header(props) {
 
     const { Search } = Input;
     const onSearch = value => console.log(value);
+    const basketCoins = useSelector((state)=>state.coin.addCoins)
+    const coinsAmount = useSelector((state)=>state.coin.addCoinsAmount)
+    const money = useSelector((state)=>state.coin.money).toLocaleString('en-US')
+
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
+
+    const handleClick = (x) => {
+
+    }
 
     return (
         <div className={"fullHeader"}>
@@ -14,9 +37,35 @@ function Header(props) {
                 <h1>crypto</h1>
                 <div className={"HeaderButton"}>
                     <Button size={"large"} type="primary">Profile </Button>
-                    <Button size={"large"} type="primary">Wallet </Button>
-                    <Button size={"large"} type="primary">Profile </Button>
-                    <Button size={"large"} type="primary">USD 100.000,00 </Button>
+                    <Button size={"large"} type="primary" onClick={showModal}>
+                        Wallet
+                        <span className={"badge"}>
+                            {basketCoins.length}
+                        </span>
+                    </Button>
+                    <Modal className={"modal"} title="Wallet" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                        {basketCoins.map((x)=>(
+                            <Card key={x.id} className={"modalCard"}  bordered={true} style={{ width: 350 ,height:200 }}>
+                                <div style={{display:"flex"}}>
+                                    <img src={x?.image} alt=""/>
+                                    <h2>{x.current_price} $</h2>
+                                </div>
+                                <Button className={"oranModalButton"} size={"large"} >{x.market_cap_change_percentage_24h}</Button>
+                                <div className={"flexBasketButton"}>
+                                    <Button size={"large"} type="danger">Sell</Button>
+                                    <Button size={"large"} className={"amountModal"}><h4>{coinsAmount}</h4></Button>
+                                    <Button size={"large"} onClick={()=> handleClick(x)}   type="primary">Buy</Button>
+                                </div>
+                            </Card>
+                        ))}
+                    </Modal>
+                    <Button size={"large"} type="primary">
+                        <FundOutlined style={{fontSize:20}}/>
+                        <span className={"badge"}>
+                            100.000
+                        </span>
+                    </Button>
+                    <Button size={"large"} type="primary">USD {money} </Button>
                 </div>
                 <Search
                     className={"Search"}

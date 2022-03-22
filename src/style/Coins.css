@@ -26,3 +26,19 @@
 .flexCardBtn Button {
     margin: auto;
 }
+
+.flexCardBtn Button:nth-child(2){
+    background-color: rgb(255,255,255);
+    color: rgb(21,115,71);
+    border-color:rgb(21,115,71) ;
+}
+
+.flexCardBtn Button:nth-child(2):hover{
+    cursor: default;
+}
+
+/*.flexCardBtn Button:nth-child(3){*/
+/*    background-color: rgb(21,115,71);*/
+/*    color: white;*/
+/*    border-color: rgb(21, 93, 22);*/
+/*}*/

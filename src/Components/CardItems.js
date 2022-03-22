@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Card, Col, Row, Button} from "antd";
-import {default as axios} from "axios";
+import {Card, Col, Row, Button } from "antd";
 import coinsCSS from '../style/Coins.css'
+import {fetchCoins, money, addToCoins, moneySell, coinAmount} from '../Redux/coinSlice'
+import {useDispatch, useSelector} from "react-redux";
 
 
 
@@ -9,44 +10,72 @@ import coinsCSS from '../style/Coins.css'
 function CardItems() {
 
     const { Meta } = Card;
+    const dispatch = useDispatch();
+    const coinsItem = useSelector((state)=>state.coin.items)
+    const basketCoins = useSelector((state)=>state.coin.addCoins)
+    const coinsAmount = useSelector((state)=>state.coin.addCoinsAmount)
+    const totalMoney = useSelector((state)=>state.coin.money)
 
-    const [coins,setCoins] = useState([])
-
-    useEffect(()=> {
-        const fetchCoins = async () => {
-            await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=76&page=1&sparkline=false`).then((response)=>{
-                response.json().then((json)=> {
-                    setCoins(json)
-                })
-            })
-        }
-        fetchCoins()
+    useEffect(()=>{
+        dispatch(fetchCoins())
     },[])
 
-    useEffect(()=> {
-        const fetchCoins = async () => {
-            await fetch(`https://api.coingecko.com/api/v3/coins`).then((response)=>{
-                response.json().then((json)=> {
-                    console.log(json)
-                })
-            })
+    // useEffect(()=> {
+    //     const fetchCoins = async () => {
+    //         await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false`).then((response)=>{
+    //             response.json().then((json)=> {
+    //                 setCoins(json)
+    //             })
+    //         })
+    //     }
+    //     fetchCoins()
+    // },[])
+
+    // useEffect(()=> {
+    //     const fetchCoins = async () => {
+    //         await fetch(`https://api.coingecko.com/api/v3/coins`).then((response)=>{
+    //             response.json().then((json)=> {
+    //                 // console.log(json)
+    //             })
+    //         })
+    //     }
+    //     fetchCoins()
+    // },[])
+
+
+    const handleClickBuy = (x) => {
+        console.log(basketCoins.filter((y)=>y.id===x.id).length)
+        if(totalMoney>x.current_price){
+            const checkBasketCoins = basketCoins.filter((items)=>items.id === x.id).length === 0
+            if(checkBasketCoins ){
+                dispatch(addToCoins([...basketCoins, x]))
+                dispatch(money(x.current_price))
+            }else{
+                dispatch(addToCoins([...basketCoins, x]))
+                dispatch(money(x.current_price))
+            }
         }
-        fetchCoins()
-    },[])
-    console.log(coins)
+    }
+
+
+    const handleClickSell = (x) => {
+        dispatch(moneySell(x.current_price))
+    }
+
 
     return (
         <div className={"Coins"}>
             <Row gutter={[32,32]}>
-                {coins?.map((x)=>(
+                {coinsItem?.map((x)=>(
                     <Col key={x.id} className="gutter-row" span={6}>
                         <div className="site-card-border-less-wrapper">
                             <Card title={x?.id.toUpperCase()} bordered={true} style={{ width: 250 ,height:400 }}>
                                 <img src={x?.image} alt=""/>
                                 <h1>{x.current_price} $</h1>
                                 <div className={"flexCardBtn"}>
-                                    <Button size={"large"} type="danger">Sell</Button>
-                                    <Button size={"large"} style={{background: "rgb(21,115,71)"}} type="primary">Buy</Button>
+                                    <Button onClick={()=>handleClickSell(x)} size={"large"} type="danger">Sell</Button>
+                                    <Button size={"large"} >{x.market_cap_change_percentage_24h}</Button>
+                                    <Button disabled={totalMoney<x.current_price} onClick={()=> handleClickBuy(x)} size={"large"}  type="primary">Buy</Button>
                                 </div>
                             </Card>
                         </div>
