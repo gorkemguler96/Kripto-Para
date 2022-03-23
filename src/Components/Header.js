@@ -5,7 +5,7 @@ import headerCss from '../style/Header.css'
 import {useSelector} from "react-redux";
 import {FundOutlined} from "@ant-design/icons";
 
-function Header(props) {
+function Header({basket, setBasket}) {
 
     const { Search } = Input;
     const onSearch = value => console.log(value);
@@ -31,6 +31,9 @@ function Header(props) {
 
     }
 
+    const basketObj = basket.map((x)=>x)
+    console.log(basketObj)
+
     return (
         <div className={"fullHeader"}>
             <div className={"Header"}>
@@ -40,12 +43,12 @@ function Header(props) {
                     <Button size={"large"} type="primary" onClick={showModal}>
                         Wallet
                         <span className={"badge"}>
-                            {basketCoins.length}
+                            {coinsAmount}
                         </span>
                     </Button>
                     <Modal className={"modal"} title="Wallet" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-                        {basketCoins.map((x)=>(
-                            <Card key={x.id} className={"modalCard"}  bordered={true} style={{ width: 350 ,height:200 }}>
+                        {basket.map((x)=>(
+                            <Card key={x.total_volume} className={"modalCard"}  bordered={true} style={{ width: 350 ,height:200 }}>
                                 <div style={{display:"flex"}}>
                                     <img src={x?.image} alt=""/>
                                     <h2>{x.current_price} $</h2>
@@ -53,7 +56,7 @@ function Header(props) {
                                 <Button className={"oranModalButton"} size={"large"} >{x.market_cap_change_percentage_24h}</Button>
                                 <div className={"flexBasketButton"}>
                                     <Button size={"large"} type="danger">Sell</Button>
-                                    <Button size={"large"} className={"amountModal"}><h4>{coinsAmount}</h4></Button>
+                                    <Button size={"large"} className={"amountModal"}><h4>x{x?.amount}</h4></Button>
                                     <Button size={"large"} onClick={()=> handleClick(x)}   type="primary">Buy</Button>
                                 </div>
                             </Card>

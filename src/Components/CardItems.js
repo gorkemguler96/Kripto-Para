@@ -31,32 +31,23 @@ function CardItems() {
     //     fetchCoins()
     // },[])
 
-    // useEffect(()=> {
-    //     const fetchCoins = async () => {
-    //         await fetch(`https://api.coingecko.com/api/v3/coins`).then((response)=>{
-    //             response.json().then((json)=> {
-    //                 // console.log(json)
-    //             })
-    //         })
-    //     }
-    //     fetchCoins()
-    // },[])
-
 
     const handleClickBuy = (x) => {
-        console.log(basketCoins.filter((y)=>y.id===x.id).length)
+        console.log(basketCoins.filter((y)=>y.id===x.id).length+1)
         if(totalMoney>x.current_price){
-            const checkBasketCoins = basketCoins.filter((items)=>items.id === x.id).length === 0
+            const checkBasketCoins = basketCoins.filter((items)=>items.id === x.id).length < 0
             if(checkBasketCoins ){
                 dispatch(addToCoins([...basketCoins, x]))
                 dispatch(money(x.current_price))
             }else{
-                dispatch(addToCoins([...basketCoins, x]))
+                dispatch(addToCoins([...basketCoins, basketCoins.filter((z)=>z.id === x.id).length+1]))
                 dispatch(money(x.current_price))
             }
         }
     }
-
+    useEffect(()=>{
+        console.log(basketCoins)
+    },[])
 
     const handleClickSell = (x) => {
         dispatch(moneySell(x.current_price))
