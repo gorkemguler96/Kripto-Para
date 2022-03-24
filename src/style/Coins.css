@@ -37,8 +37,52 @@
     cursor: default;
 }
 
-/*.flexCardBtn Button:nth-child(3){*/
-/*    background-color: rgb(21,115,71);*/
-/*    color: white;*/
-/*    border-color: rgb(21, 93, 22);*/
-/*}*/
+.amountsuzCard Button{
+    margin-left: 5px;
+}
+
+.amountluCard {
+    display: flex;
+    justify-content: center;
+}
+.amountluCard Button {
+    margin-left: 5px;
+}
+
+.eksiPoint{
+    color: red;
+    border-color: red;
+    cursor: default;
+}
+
+.eksiPoint:focus{
+    color: red;
+    border-color: red;
+    cursor: default;
+}
+
+.eksiPoint:hover{
+    color: red;
+    border-color: red;
+    cursor: default;
+}
+
+.artiPoint{
+    color: green;
+    border-color: green;
+    cursor: default;
+}
+
+.artiPoint:focus{
+    color: green;
+    border-color: green;
+    cursor: default;
+}
+
+.artiPoint:hover{
+    box-shadow: green;
+    color: green;
+    border-color: green;
+}
+
+

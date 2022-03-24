@@ -15,10 +15,11 @@ function App() {
     const [items,setItems] = useState([])
     const [amountluItem,setAmountluItem] = useState([])
     const [basket,setBasket] = useState([])
+    const [totalCoinPrice,setTotalCoinPrice] = useState([])
 
     useEffect(()=> {
         const fetchCoins = async () => {
-            await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false`).then((response)=>{
+            await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=52&page=1&sparkline=false`).then((response)=>{
                 response.json().then((json)=> {
                     setItems(json)
                 })
@@ -28,23 +29,15 @@ function App() {
     },[])
 
     useEffect(()=>{
-        setAmountluItem(items?.map((z)=>[{...z, amount: 1}]))
+        setAmountluItem(items?.map((z)=>[{...z, amount: 0}]))
     },[items])
-
-    // useEffect(()=>{
-    //     for(let i = 0; i<items.length; i++){
-    //        setDeneme(amountluItem[i]?.map((x)=>x))
-    //
-    //     }
-    // },[amountluItem])
-
 
 
 
   return (
     <div className={"App"}>
-        <Header basket={basket} setBasket={setBasket}/>
-        <Coins basket={basket} setBasket={setBasket} items={items} amountluItem={amountluItem} setAmountluItem={setAmountluItem}/>
+        <Header setAmountluItem={setAmountluItem} amountluItem={amountluItem} items={items} setItems={setItems} totalCoinPrice={totalCoinPrice} setTotalCoinPrice={setTotalCoinPrice} basket={basket} setBasket={setBasket}/>
+        <Coins totalCoinPrice={totalCoinPrice} setTotalCoinPrice={setTotalCoinPrice} basket={basket} setBasket={setBasket} items={items} amountluItem={amountluItem} setAmountluItem={setAmountluItem}/>
     </div>
   );
 }
