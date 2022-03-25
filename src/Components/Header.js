@@ -21,7 +21,7 @@ function Header({basket, setBasket, totalCoinPrice, setItems, items, amountluIte
     //     setAmountluItem(z)
     // )));
     // console.log(items.map(x=>x.id))
-    //*------------------------------------------YARİN Kİ İŞİN BURADAN BAŞLAAA
+    //*------------------------------------------YARİN Kİ İŞİN BURADAN BAŞLAAAAAA
 
     const [isModalVisible, setIsModalVisible] = useState(false);
 
