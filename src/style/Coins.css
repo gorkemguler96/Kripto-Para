@@ -2,12 +2,32 @@
     width: 95%;
     margin-left: auto;
     margin-top: 2rem;
+    padding-top: 2rem;
 }
 
 .Coins img {
     width: 90%;
     height: 180px;
     margin-left: 0.75rem;
+}
+
+.nextPageBtn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: #157347;
+}
+
+.nextPageBtn:hover {
+    background: #157347;
+}
+
+.nextPageBtn:focus {
+    background: #157347;
+}
+
+.nextPage{
+    margin-top: 5px;
+    border-top: 1px solid rgba(1,1,1,0.3);
 }
 
 .Coins h1 {

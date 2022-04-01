@@ -1,20 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import CardItems from "./CardItems";
-import {default as axios} from "axios";
+import React from 'react';
 import {Card, Col, Row, Button } from "antd";
-import coinsCSS from '../style/Coins.css'
-import {fetchCoins, money, addToCoins, moneySell, coinAmount} from '../Redux/coinSlice'
+import coinsCSS from '../../../style/Coins.css'
+import {nextPage, money, moneySell, coinAmount} from '../../../Redux/coinSlice'
 import {useDispatch, useSelector} from "react-redux";
 
 
-function Coins({amountluItem,setAmountluItem,items, basket, setBasket, totalCoinPrice, setTotalCoinPrice }) {
+function AllCoins({ amountluItem, basket, setBasket }) {
 
     const { Meta } = Card;
     const dispatch = useDispatch();
-    const coinsItem = useSelector((state)=>state.coin.items)
-    const basketCoins = useSelector((state)=>state.coin.addCoins)
-    const coinsAmount = useSelector((state)=>state.coin.addCoinsAmount)
     const totalMoney = useSelector((state)=>state.coin.money)
+    const page = useSelector((state)=>state.coin.page)
 
 
     const handleClickBuy = (x) => {
@@ -31,25 +27,23 @@ function Coins({amountluItem,setAmountluItem,items, basket, setBasket, totalCoin
             }
         }
     }
-    // console.log(totalCoinPrice.reduce((acc,item)=>acc + item,0))
 
     const handleClickSell = (x) => {
-        const checkItem = basket.map(x=>x.id)
         if(x.amount >1){
             dispatch(coinAmount(-1))
             setBasket([...basket],x.amount--)
             dispatch(moneySell(x.current_price))
-            const reduceCoin = totalCoinPrice.reduce((acc,item)=>acc + item,0)
         }else if(x.amount ===1) {
             dispatch(coinAmount(-1))
             const removeItem = basket.filter((item)=>item.id !== x.id)
             dispatch(moneySell(x.current_price))
             setBasket([...removeItem],x.amount--)
-            const reduceCoin = totalCoinPrice.reduce((acc,item)=>acc + item,0)
         }
     }
 
-    const olLutfen = [...amountluItem.map(x=>x[0])]
+    const handleClickNextPage = () => {
+        dispatch(nextPage())
+    }
 
     return (
         <div className={"Coins"}>
@@ -74,17 +68,18 @@ function Coins({amountluItem,setAmountluItem,items, basket, setBasket, totalCoin
                                                 <Button disabled={totalMoney<x.current_price} onClick={()=> handleClickBuy(x)} size={"large"}  type="primary">Buy</Button>
                                             </div>
                                         }
-
-
                                     </div>
                                 </Card>
                             </div>
                         </Col>
                     ))}
                 </Row>
+                <div className={"nextPage"}>
+                    <Button onClick={()=>handleClickNextPage()} disabled={page >= 5} className={"nextPageBtn"} type="primary">{page >=5 ? "All coins listed" :`Next Page(${page})` }</Button>
+                </div>
             </div>
         </div>
     );
 }
 
-export default Coins;
+export default AllCoins;

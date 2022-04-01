@@ -12,6 +12,29 @@
     margin: auto;
 }
 
+.HeaderButton {
+    margin-left: 1.3rem;
+    display: flex;
+}
+
+.totalMoneyBtn Button{
+    background-color: #157347;
+    color: white;
+    border-color: #157347;
+}
+
+.totalMoneyBtn Button:focus{
+    background-color: #157347;
+    color: white;
+    border-color: #157347;
+
+}
+.totalMoneyBtn Button:hover{
+    background-color: #2ea96b;
+    color: white;
+    border-color:  #157347;;
+}
+
 .headerBottomColor {
     background-color: #1E90FF;
     height: 0.6rem;
@@ -21,42 +44,46 @@
     color: white;
 }
 
-.HeaderButton {
-    margin-left: 1.3rem;
-}
-
 .Header Button {
     margin-left: 0.75rem;
     border-radius: 0.23rem;
 }
 
-.Header Button:nth-child(2){
+.amountModal{
+    cursor: default;
+}
+
+.walletBtn Button{
     background-color: #FFCA2C;
     color: black;
+    border-color: #FFCA2C;
 }
 
-.Header Button:nth-child(3){
-    background-color: #157347;
-    color: white;
+.walletBtn Button:hover{
+    background-color: #f8db81;
+    color: black;
+    border-color: #FFCA2C;
 }
 
-.Header Button:nth-child(4){
-    background-color: #1C1F23;
-    color: white;
-    font-weight: bold;
+.walletBtn Button:focus{
+    background-color: #FFCA2C;
+    color: black;
+    border-color: #FFCA2C;
 }
+
+
 
 .Header .Search {
     width: 20rem;
     margin-left: auto;
 }
 
-.Header .Search Button {
+.searchBar Button {
     background: #212529;
     color: #0d6efd;
 }
 
-.Header .Search Button:hover {
+.searchBar Button:hover {
     background: #0d6efd;
     color: white;
 }
@@ -78,7 +105,6 @@
  .modal img {
      height: 55px;
      padding-right: 50px;
-     /*margin-bottom: 40px;*/
  }
 
  .modal h2 {
@@ -90,9 +116,14 @@
      margin-bottom: 2rem;
      text-align: center;
  }
-.modal .oranModalButton {
+
+.oranModalButton {
     margin-bottom: 1.5rem;
     cursor: default;
+}
+
+.oranModalButton:hover {
+    background: #1C1F23;
 }
 
 .flexBasketButton Button {
@@ -119,6 +150,10 @@ display: flex;
     color: #1C1F23;
 }
 
+.modalCard Button {
+    margin-bottom: 25px;
+}
+
 .walletTotal Button:focus {
     cursor: default;
     border-color: #1C1F23;
@@ -129,4 +164,14 @@ display: flex;
     margin-left: auto;
     color: black;
     cursor: pointer;
+}
+
+.searchBar {
+    margin-left: auto;
+}
+
+.fullHeader {
+    z-index: 1;
+    margin-top: -32px;
+    position: fixed;
 }

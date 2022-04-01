@@ -14,14 +14,21 @@ export const coinSlice = createSlice({
         coinsAmount: 0,
         money:100000,
         addCoins:[],
-        addCoinsAmount: 0
+        addCoinsAmount: 0,
+        page:1
     },
     reducers: {
         money: (state,action) => {
             state.money -= action.payload
         },
+        nextPage:( state,action) => {
+            state.page++
+        },
         coinAmount: (state,action)=> {
             state.addCoinsAmount += action.payload
+        },
+        zeroCoinAmount: (state,action)=>{
+            state.addCoinsAmount = action.payload
         },
         moneySell: (state,action) => {
           state.money += action.payload
@@ -37,6 +44,6 @@ export const coinSlice = createSlice({
     }
 })
 
-export const {money, addToCoins,moneySell, coinAmount } = coinSlice.actions
+export const {money, addToCoins,moneySell, coinAmount, nextPage,zeroCoinAmount } = coinSlice.actions
 
 export default coinSlice.reducer
