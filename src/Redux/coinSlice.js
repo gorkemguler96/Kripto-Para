@@ -15,14 +15,33 @@ export const coinSlice = createSlice({
         money:100000,
         addCoins:[],
         addCoinsAmount: 0,
-        page:1
+        page:1,
+        checkProfile:false,
+        accountProfile:[],
+        accountProfileOnly:false,
+        darkMode:false
     },
     reducers: {
         money: (state,action) => {
             state.money -= action.payload
         },
+        changeDarkMode: (state,action) => {
+            state.darkMode = action.payload
+        },
+        checkProfile: (state,action)=>{
+          state.checkProfile = action.payload
+        },
+        accountProfileOnly: (state,action)=>{
+            state.accountProfileOnly = action.payload
+        },
+        accountProfile: (state,action)=>{
+            state.accountProfile = action.payload
+        },
         nextPage:( state,action) => {
             state.page++
+        },
+        logOutPage:( state,action) => {
+            state.page = action.payload
         },
         coinAmount: (state,action)=> {
             state.addCoinsAmount += action.payload
@@ -44,6 +63,6 @@ export const coinSlice = createSlice({
     }
 })
 
-export const {money, addToCoins,moneySell, coinAmount, nextPage,zeroCoinAmount } = coinSlice.actions
+export const {money, logOutPage, changeDarkMode, addToCoins,moneySell, coinAmount, nextPage,zeroCoinAmount, accountProfile, checkProfile,accountProfileOnly } = coinSlice.actions
 
 export default coinSlice.reducer

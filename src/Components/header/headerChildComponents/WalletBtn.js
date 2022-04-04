@@ -76,7 +76,7 @@ function WalletBtn({basket,setBasket}) {
                             {coinsAmount}
                         </span>
             </Button>
-            <Modal className={"modal"} title="Wallet" visible={isModalVisible} onOk={handleOk} okType={"danger"} okText={"Sell All Coins"}  onCancel={handleCancel}>
+            <Modal  className={"modal"} title="Wallet" visible={isModalVisible} onOk={handleOk} okType={"danger"} okText={"Sell All Coins"}  onCancel={handleCancel}>
                 <div className={"walletTotal"}>
                     <Button size={"large"}>Total : 100.000$ </Button>
                     <Button size={"large"}>{stateMoney} USD</Button>

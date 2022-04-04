@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react'
 import { useSelector } from 'react-redux'
 import Header from "./Components/header/Header";
 import FirstComponentCoins from "./Components/coins/FirstComponentCoins";
+import LandingPage from "./Components/LandingPage";
 
 function App() {
 
@@ -13,6 +14,9 @@ function App() {
     const [basket,setBasket] = useState([])
     const [totalCoinPrice,setTotalCoinPrice] = useState([])
     const page = useSelector((state)=>state.coin.page)
+    const profileNames = useSelector((state)=>state.coin.accountProfile)
+    const onlyProfils = useSelector((state)=>state.coin.accountProfileOnly)
+    const darkMode = useSelector((state)=>state.coin.darkMode)
     const addCoinsAmount = 52
 
     useEffect(()=> {
@@ -33,9 +37,30 @@ function App() {
 
 
   return (
-    <div className={"App"}>
-        <Header deneme={deneme} setDeneme={setDeneme} setAmountluItem={setAmountluItem} amountluItem={amountluItem} items={items} setItems={setItems} totalCoinPrice={totalCoinPrice} setTotalCoinPrice={setTotalCoinPrice} basket={basket} setBasket={setBasket}/>
-        <FirstComponentCoins deneme={deneme} setDeneme={setDeneme} totalCoinPrice={totalCoinPrice} basket={basket} setBasket={setBasket} items={items} amountluItem={amountluItem} setAmountluItem={setAmountluItem}/>
+    <div className={darkMode ? "App" : null}>
+        {profileNames&&onlyProfils ? <span>
+            <Header
+                deneme={deneme}
+                setDeneme={setDeneme}
+                setAmountluItem={setAmountluItem}
+                amountluItem={amountluItem} items={items}
+                setItems={setItems} totalCoinPrice={totalCoinPrice}
+                setTotalCoinPrice={setTotalCoinPrice} basket={basket}
+                setBasket={setBasket}
+            />
+            <FirstComponentCoins
+                deneme={deneme}
+                setDeneme={setDeneme}
+                totalCoinPrice={totalCoinPrice}
+                basket={basket}
+                setBasket={setBasket}
+                items={items}
+                amountluItem={amountluItem}
+                setAmountluItem={setAmountluItem}
+            />
+        </span>:  <LandingPage/>}
+
+
     </div>
   );
 }

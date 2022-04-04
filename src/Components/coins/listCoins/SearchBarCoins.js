@@ -7,6 +7,7 @@ function SearchBarCoins({deneme, totalCoinPrice, basket, setBasket}) {
 
     const dispatch = useDispatch();
     const totalMoney = useSelector((state)=>state.coin.money)
+    const darkMode = useSelector((state)=>state.coin.darkMode)
 
     const handleClickSell = (x) => {
         if(x?.amount >1){
@@ -44,7 +45,7 @@ function SearchBarCoins({deneme, totalCoinPrice, basket, setBasket}) {
                     {deneme.map((x)=>(
                         <Col key={x?.id} className="gutter-row" span={6}>
                             <div className="site-card-border-less-wrapper">
-                                <Card title={x?.id.toUpperCase()} bordered={true} style={{ width: 250 ,height:400 }}>
+                                <Card headStyle={darkMode ?{background:"#1C1F23" }:null}  bodyStyle={darkMode?{background:"#1C1F23"}: {background:"white"}} headStyle={darkMode ?{background:"#1C1F23" }:null}  bodyStyle={darkMode?{background:"#1C1F23"}: {background:"white"}} title={x?.id.toUpperCase()} bordered={true} style={{ width: 250 ,height:400 }}>
                                     <img src={x?.image} alt=""/>
                                     <h1>{x?.current_price} $</h1>
                                     <div>

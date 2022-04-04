@@ -32,7 +32,8 @@
 .totalMoneyBtn Button:hover{
     background-color: #2ea96b;
     color: white;
-    border-color:  #157347;;
+    border-color:  #157347;
+    cursor: default;
 }
 
 .headerBottomColor {
@@ -117,11 +118,6 @@
      text-align: center;
  }
 
-.oranModalButton {
-    margin-bottom: 1.5rem;
-    cursor: default;
-}
-
 .oranModalButton:hover {
     background: #1C1F23;
 }
@@ -174,4 +170,117 @@ display: flex;
     z-index: 1;
     margin-top: -32px;
     position: fixed;
+}
+
+.profileDiv {
+    margin-top: 10px;
+    padding-top: 10px;
+    margin-bottom: 13px;
+    height: 90px;
+    display: grid;
+    justify-content: center;
+}
+
+.modalClss {
+    background-color: #1C1F23;
+}
+
+.profileDiv Button:nth-child(1) {
+    color: white;
+    cursor: default;
+}
+
+.profileDiv Button:nth-child(1):hover {
+    color: white;
+    cursor: default;
+}
+
+.profileDiv Button:nth-child(1):focus {
+    color: white;
+    cursor: default;
+}
+
+.profileDiv .ucluButton Button:nth-child(1) {
+    color: white;
+    cursor: default;
+    border-color: white;
+    border-radius: 5px;
+}
+
+.profileDiv .ucluButton Button:hover:nth-child(1) {
+    color: black;
+    cursor: default;
+    border-color: black;
+    background: white;
+    border-radius: 5px;
+}
+
+.profileDiv .ucluButton:nth-child(2) {
+    color: white;
+    align-items: center;
+    font-size: 23px;
+    cursor: pointer;
+
+}
+
+.profileDiv .ucluButton Button:nth-child(3) {
+    color: orangered;
+    cursor: default;
+    border-color: white;
+    border-radius: 5px;
+}
+
+.profileDiv .ucluButton Button:hover:nth-child(3) {
+    color: black;
+    cursor: default;
+    border-color: black;
+    background: white;
+    border-radius: 5px;
+}
+
+.profileDiv .ucluButton Button  {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.modalProfile h4 {
+    text-align: center;
+}
+
+.dark {
+    background: #1C1F23;
+    color: white;
+}
+
+.dark:hover {
+    background: #1C1F23;
+    color: white;
+}
+
+.dark:focus {
+    background: #1C1F23;
+    color: white;
+}
+
+.light {
+    border-color: #1C1F23;
+}
+
+.light:focus {
+    border-color: #1C1F23;
+}
+
+.light:hover {
+    border-color: #1C1F23;
+}
+
+.modalProfile {
+    align-items: center;
+    justify-content: center;
+}
+
+.modalButtons Button:nth-child(1) {
+    margin-top: 25px;
+    margin-left: 165px;
+    margin-right: 25px;
 }

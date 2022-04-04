@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card, Col, Row, Button } from "antd";
 import coinsCSS from '../../../style/Coins.css'
-import {nextPage, money, moneySell, coinAmount} from '../../../Redux/coinSlice'
+import {nextPage, money, moneySell, coinAmount, changeDarkMode} from '../../../Redux/coinSlice'
 import {useDispatch, useSelector} from "react-redux";
 
 
@@ -10,6 +10,7 @@ function AllCoins({ amountluItem, basket, setBasket }) {
     const { Meta } = Card;
     const dispatch = useDispatch();
     const totalMoney = useSelector((state)=>state.coin.money)
+    const darkMode = useSelector((state)=>state.coin.darkMode)
     const page = useSelector((state)=>state.coin.page)
 
 
@@ -52,7 +53,7 @@ function AllCoins({ amountluItem, basket, setBasket }) {
                     {[...amountluItem.map(x=>x[0])].map((x)=>(
                         <Col key={x.id} className="gutter-row" span={6}>
                             <div className="site-card-border-less-wrapper">
-                                <Card title={x?.id.toUpperCase()} bordered={true} style={{ width: 250 ,height:400 }}>
+                                <Card headStyle={darkMode ?{background:"#1C1F23" }:null}  bodyStyle={darkMode?{background:"#1C1F23"}: {background:"white"}} title={x?.id.toUpperCase()} bordered={true} style={{ width: 250 ,height:400 }}>
                                     <img src={x?.image} alt=""/>
                                     <h1>{x.current_price} $</h1>
                                     <div>
