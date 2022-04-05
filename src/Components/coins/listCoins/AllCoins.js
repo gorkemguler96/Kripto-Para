@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card, Col, Row, Button } from "antd";
 import coinsCSS from '../../../style/Coins.css'
-import {nextPage, money, moneySell, coinAmount, changeDarkMode} from '../../../Redux/coinSlice'
+import {nextPage, money, moneySell, coinAmount} from '../../../Redux/coinSlice'
 import {useDispatch, useSelector} from "react-redux";
 
 
