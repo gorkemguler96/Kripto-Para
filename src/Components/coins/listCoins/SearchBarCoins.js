@@ -20,7 +20,7 @@ function SearchBarCoins({deneme, totalCoinPrice, basket, setBasket}) {
             const removeItem = basket.filter((item)=>item.id !== x.id)
             dispatch(moneySell(x?.current_price))
             setBasket([...removeItem],x.amount--)
-            const reduceCoin = totalCoinPrice.reduce((acc,item)=>acc + item,0)
+            // const reduceCoin = totalCoinPrice.reduce((acc,item)=>acc + item,0)s
         }
     }
     const handleClickBuy = (x) => {
